@@ -2,27 +2,35 @@ import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Button, FlatList, Image, Modal, TouchableOpacity } from 'react-native';
 
-const Item = ({title, onPress}) => (
-  <View style={styles.item}>
+const Item = ({title, onDelete, onCheck, isReady}) => (
+  <View style={isReady ? [styles.item, styles.itemReady] : styles.item}>
     <Text style={styles.title}>{title}</Text>
-    <TouchableOpacity onPress={onPress}>
-      <Image
-          style={styles.icon}
-          source={require("./assets/delete-icon.png")}
-        />
-    </TouchableOpacity>
+    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end'}}>
+      <TouchableOpacity onPress={onCheck}>
+        <Image
+            style={styles.icon}
+            source={require("./assets/check-icon.png")}
+          />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={onDelete} style={{marginLeft: 3}}>
+        <Image
+            style={styles.icon}
+            source={require("./assets/delete-icon.png")}
+          />
+      </TouchableOpacity>
+    </View>
   </View>
 );
 
 export default function App() {
-  const [itemList, setItemList] = useState([{id: '0.14816516', title: 'Primer item de prueba'}]);
+  const [itemList, setItemList] = useState([{id: '0.14816516', title: 'Primer item de prueba', isReady: true}]);
   const [valueText, setValueText] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
   const add = ()=>{
     if (!valueText) return console.warn("Campo vacío");
-    setItemList([...itemList, {id: Math.random().toString(), title: valueText}]);
+    setItemList([...itemList, {id: Math.random().toString(), title: valueText, isReady:false}]);
     setValueText('');
   }
 
@@ -44,6 +52,17 @@ export default function App() {
     setSelectedItem(null);
   }
 
+  const onCheck = (id)=>{
+    const ModifiedList = itemList.map(item => {
+      if (item.id === id){
+        item.isReady = !item.isReady;
+      }
+      return item;
+    })
+    setItemList(ModifiedList);
+    setSelectedItem(null);
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.agregarContainer}>
@@ -53,7 +72,7 @@ export default function App() {
       <View style={styles.listContainer}>
         <FlatList
           data={itemList}
-          renderItem={({item}) => <Item title={item.title} onPress={()=> onHandlerModal(item.id)}/>}
+          renderItem={({item}) =><Item title={item.title} onDelete={()=> onHandlerModal(item.id)} onCheck={()=> onCheck(item.id)} isReady={item.isReady}/>}
           keyExtractor={item => item.id}
         />
       </View>
@@ -119,6 +138,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between'
+  },
+  itemReady:{
+    backgroundColor: 'green',
   },
   title:{
     color: '#FFFFFA',
