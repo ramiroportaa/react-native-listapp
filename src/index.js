@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, FlatList, Modal } from 'react-native';
+import { View, FlatList, Modal } from 'react-native';
+import { styles } from './styles';
 
 import { Input, Item, ModalItem } from './components';
 
@@ -66,18 +67,3 @@ export default function App() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#080705',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    marginTop: 30,
-    paddingTop: 30,
-    paddingHorizontal: 30
-  },
-  listContainer:{
-    marginVertical: 16
-  },
-});
