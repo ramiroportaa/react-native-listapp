@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import {styles} from './styles';
+import { theme } from '../../constants';
 
-const ModalItem = ({buttonColor, onCancel, onDelete, selectedItem}) => {
+
+const ModalItem = ({onCancel, onDelete, selectedItem}) => {
   return (
       <View style={styles.container}>
         <Text style={styles.title}>Detalle</Text>
@@ -13,12 +15,12 @@ const ModalItem = ({buttonColor, onCancel, onDelete, selectedItem}) => {
         <View style={styles.buttonContainer}>
           <Button 
             title='Cancel'
-            color={buttonColor}
+            color={theme.colors.secondary}
             onPress={onCancel}
           />
           <Button 
           title='Delete'
-          color={buttonColor}
+          color={theme.colors.red}
           onPress={() => onDelete(selectedItem?.id)}
           />
         </View>

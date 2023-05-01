@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native"
+import { theme } from './../../constants';
 
 export const styles = StyleSheet.create({
     agregarContainer:{
@@ -8,9 +9,9 @@ export const styles = StyleSheet.create({
         width: '100%'
     },
     textInputAgregar:{
-        borderBottomColor: '#FFFFFA',
+        borderBottomColor: theme.colors.secondary,
         borderBottomWidth: 1,
         width: '70%',
-        color: '#FFFFFA'
+        color: theme.colors.text,
     },
 })

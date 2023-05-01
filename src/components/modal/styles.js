@@ -1,9 +1,10 @@
 import { StyleSheet } from "react-native"
+import { theme } from './../../constants';
 
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#080705',
+        backgroundColor: theme.colors.background,
         alignItems: 'center',
         justifyContent: 'flex-start',
         marginTop: 30,
@@ -11,7 +12,7 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 30
       },
       title:{
-        color: '#FFFFFA',
+        color: theme.colors.text,
         fontSize: 16,
         fontWeight: 'bold',
       },
@@ -20,11 +21,11 @@ export const styles = StyleSheet.create({
       },
       detailMessage: {
         fontSize: 14,
-        color: '#fff',
+        color: theme.colors.white,
       },
       selectedItem: {
         fontSize: 14,
-        color: '#fff',
+        color: theme.colors.white,
         fontWeight: 'bold',
         paddingVertical: 10,
         textAlign: 'center',

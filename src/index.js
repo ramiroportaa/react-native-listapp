@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { View, FlatList, Modal } from 'react-native';
 import { styles } from './styles';
+import { theme } from './constants';
 
 import { Input, Item, ModalItem } from './components';
 
@@ -48,8 +49,8 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Input placeholder='Escriba lo que desea añadir' placeholderTextColor='white' textValue={valueText} onChangeText={(text)=> setValueText(text)}
-      buttonColor='#40434E' buttonTitle='Agregar' onPress={add}/>
+      <Input placeholder='Escriba lo que desea añadir' placeholderTextColor={theme.colors.text} textValue={valueText} onChangeText={(text)=> setValueText(text)}
+      buttonColor={theme.colors.secondary} buttonTitle='Agregar' onPress={add}/>
 
       <View style={styles.listContainer}>
         <FlatList
@@ -60,7 +61,7 @@ export default function App() {
       </View>
 
       <Modal visible={modalVisible} animationType='slide'>
-        <ModalItem buttonColor='#52528C' onCancel={onCancel} onDelete={onDelete} selectedItem={selectedItem}/>
+        <ModalItem onCancel={onCancel} onDelete={onDelete} selectedItem={selectedItem}/>
       </Modal>
 
       <StatusBar style="auto" />

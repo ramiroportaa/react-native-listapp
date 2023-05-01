@@ -1,8 +1,9 @@
 import { StyleSheet } from "react-native"
+import { theme } from './../../constants';
 
 export const styles = StyleSheet.create({
     item: {
-        backgroundColor: '#702632',
+        backgroundColor: theme.colors.red,
         padding: 20,
         marginVertical: 8,
         borderRadius: 5,
@@ -13,10 +14,10 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between'
       },
       itemReady:{
-        backgroundColor: 'green',
+        backgroundColor: theme.colors.green,
       },
       title:{
-        color: '#FFFFFA',
+        color: theme.colors.text,
         fontSize: 16,
         fontWeight: 'bold',
       },
